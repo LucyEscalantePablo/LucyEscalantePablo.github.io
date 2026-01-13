@@ -2,24 +2,19 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Mi Chat Bot</title>
+<title>Chat n8n</title>
 </head>
 <body>
 
-<div id="chatbot-box">
-  <div id="chatbox" style="height:200px;overflow-y:auto;border:1px solid #ccc;"></div>
-  <input id="userInput" placeholder="Escribe..." />
-  <button onclick="sendMessage()">Enviar</button>
+<div>
+  <input id="msg" placeholder="Escribe tu mensaje..." />
+  <button onclick="send()">Enviar</button>
+  <div id="out"></div>
 </div>
 
 <script>
-async function sendMessage() {
-  const input = document.getElementById("userInput");
-  const msg = input.value;
-  if (!msg) return;
-
-  document.getElementById("chatbox").innerHTML += `<div>Tú: ${msg}</div>`;
-  input.value = "";
+async function send() {
+  const msg = document.getElementById("msg").value;
 
   const res = await fetch("https://TU-N8N.com/webhook/chatbot", {
     method: "POST",
@@ -28,7 +23,7 @@ async function sendMessage() {
   });
 
   const data = await res.json();
-  document.getElementById("chatbox").innerHTML += `<div>Bot: ${data.reply}</div>`;
+  document.getElementById("out").innerText = data.reply;
 }
 </script>
 
