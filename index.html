@@ -16,7 +16,7 @@
 async function send() {
   const msg = document.getElementById("msg").value;
 
-  const res = await fetch("https://TU-N8N.com/webhook/chatbot", {
+  const res = await fetch("http://localhost:5678/webhook/0b92d21b-444b-442b-8ee4-0cb57b4260c1/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: msg })
