@@ -1,8 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Chat n8n</title>
+<style>
+body { font-family: Arial; background:#f2f2f2; padding:20px; }
+#chat { background:white; padding:15px; border-radius:8px; max-width:500px; margin:auto; }
+#out { margin-top:10px; padding:10px; background:#eee; min-height:40px; }
+input { width:80%; padding:8px; }
+button { padding:8px 12px; }
+</style>
+</head>
+<body>
+
+<div id="chat">
+  <h3>Chat Bot</h3>
+  <input id="msg" placeholder="Escribe tu mensaje..." />
+  <button onclick="send()">Enviar</button>
+  <div id="out"></div>
+</div>
+
 <script>
 async function send() {
   const msg = document.getElementById("msg").value;
   const out = document.getElementById("out");
-
   out.innerText = "⏳ Esperando respuesta...";
 
   try {
@@ -13,7 +34,7 @@ async function send() {
     });
 
     const data = await res.json();
-    console.log("Respuesta n8n:", data);
+    console.log(data);
 
     out.innerText = data.output || data.reply || JSON.stringify(data);
 
@@ -22,3 +43,7 @@ async function send() {
   }
 }
 </script>
+
+</body>
+</html>
+
